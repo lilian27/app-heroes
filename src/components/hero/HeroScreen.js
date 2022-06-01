@@ -2,6 +2,9 @@ import React, { useMemo } from 'react'
 import { Navigate, useParams, useNavigate } from 'react-router-dom'
 import { getHeroById } from '../../selectors/getHeroById'
 
+//import batman from '../../assets/image/dc-batman.jpg' // estatico
+const heroImages =  require.context('../../assets/image', true)
+
 export const HeroScreen = () => {
   const { heroeId } = useParams();
   const navigate = useNavigate()
@@ -21,7 +24,7 @@ export const HeroScreen = () => {
     characters
   } = hero;
 
-  const imagePath = `/assets/image/${id}.jpg`;
+  //const imagePath = `/assets/image/${id}.jpg`;
 
 
   const handleReturn = () => {
@@ -32,7 +35,10 @@ export const HeroScreen = () => {
     <div className="row mt-5">
       <div className="col-4">
         <img
-          src={imagePath}
+          //src={imagePath}
+          //src={`../assets/image/${id}.jpg`} // desde public/assets
+          //src={batman} import
+          src={ heroImages(`./${id}.jpg`) }
           alt={superhero}
           className="img-thumbnail"
         />
